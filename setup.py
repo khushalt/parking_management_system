@@ -1,3 +1,9 @@
+"""
+    Problem Statement- Design Vehicle Parking System
+    OOps Not been used Since there was no Inheritence Linking Between Objects.
+    Problem Statement can be easily solved by Procedural Design.
+"""
+
 slot_dict, parking_slots = {}, None
 
 
@@ -13,8 +19,8 @@ def setup_():
     while True:
         try:
             input_ = int(input("\n1.Create Parking Lot\n2.Park\n3.Leave\n4.Status\n5.Slot no on regi No of Vehicle\
-            \n6.Slot No for Cars with Color\nEnter your Choice: "))
-            if 0 < input_ <= 6:
+            \n6.Slot No for Cars with Color\n7.Exit\nEnter your Choice: "))
+            if 0 < input_ <= 7:
                 break
             else:
                 raise ValueError()
@@ -22,7 +28,7 @@ def setup_():
             print("\nThat is not an Option, Please choose correct option")
 
     mapper_ = {1: create_parking_lot, 2: park_car, 3: leave_slot,
-               4: show_status, 5: show_vehicle_attr, 6: get_slot_detail_on_color}
+               4: show_status, 5: show_vehicle_attr, 6: get_slot_detail_on_color, 7:exit}
     mapper_.get(input_)()
 
 
@@ -54,6 +60,12 @@ def park_car():
         validate_parking_full()
         color, car_no = input("Please enter color and Car No: ").split()
         for key, value in slot_dict.items():
+            try:
+                if value and car_no in value:
+                    raise ValidationError()
+            except Exception as e:
+                print("Vehicle No Already Exist")
+                raise ValidationError()
             if not value:
                 slot_dict.update({key: (color, car_no)})
                 break
@@ -134,5 +146,7 @@ def validate_slot_created():
         setup_()
 
 
+def exit():
+    print("Thanks for using System...have a nice Day Bye Bye..!!")
 setup_()
 
