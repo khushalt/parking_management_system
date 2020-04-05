@@ -37,7 +37,6 @@ def create_parking_lot():
         global slot_dict, parking_slots
         parking_slots = int(input("Please enter No to Create No of Slots :"))
         slot_dict.update({i: None for i in range(1, parking_slots + 1)})
-        print(slot_dict)
         print("Paking Lot for your System has been Created Successfully..!!")
     except ValueError as e:
         print("Please enter Correct Input")
@@ -69,7 +68,6 @@ def park_car():
             if not value:
                 slot_dict.update({key: (color, car_no)})
                 break
-        print(slot_dict)
     except ValueError as e:
         print("Please Input Correct data eg: White MH12DL4567")
     finally:
@@ -85,7 +83,6 @@ def leave_slot():
         # not checking if slot is already emptied since both operation will cost
         slot_dict.update({free_lot: None})
         print("Lot no %s got empty successfully" % free_lot)
-        print(slot_dict)
     except Exception as e:
         print("Please enter Correct Input")
     finally:
@@ -138,7 +135,6 @@ def get_slot_detail_on_color():
 
 def validate_slot_created():
     try:
-        print(slot_dict)
         if not slot_dict:
             raise ValidationError()
     except ValidationError as e:
@@ -148,5 +144,7 @@ def validate_slot_created():
 
 def exit():
     print("Thanks for using System...have a nice Day Bye Bye..!!")
+
+
 setup_()
 
